@@ -1,0 +1,7 @@
+# Ignorar carpetas de compilación
+bin/
+obj/
+.vs/
+
+# Ignorar el archivo de datos pesado
+*.xlsx
