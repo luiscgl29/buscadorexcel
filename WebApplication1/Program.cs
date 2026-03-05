@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configuración para que funcione en LAN (WiFi)
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-builder.WebHost.UseUrls("http://0.0.0.0:5000:{port}");
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}"); 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -18,7 +18,7 @@ app.UseCors("AllowAll");
 
 // --- RUTA DEL ARCHIVO EXCEL ---
 //string rutaExcel = @"C:\BDEstudiantes\Estudiantes2026.xlsx";
-string rutaExcel = "/app/data/Estudiantes2026.xlsx";
+string rutaExcel = Path.Combine(AppContext.BaseDirectory, "Data", "Estudiantes2026.xlsx");
 
 // 1. FRONTEND (Página Web)
 app.MapGet("/", () => Results.Content(@"
