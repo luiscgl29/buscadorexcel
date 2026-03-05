@@ -18,7 +18,7 @@ app.UseCors("AllowAll");
 
 // --- RUTA DEL ARCHIVO EXCEL ---
 //string rutaExcel = @"C:\BDEstudiantes\Estudiantes2026.xlsx";
-string rutaExcel = Path.Combine(AppContext.BaseDirectory, "Data", "Estudiantes2026.xlsx");
+string rutaExcel = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Estudiantes2026.xlsx");
 
 // 1. FRONTEND (Página Web)
 app.MapGet("/", () => Results.Content(@"
@@ -185,7 +185,7 @@ app.MapGet("/api/buscar", (string q) =>
 
         // Madre: nombre de col AO, celular primero intenta BA, luego DI
         madreNombre = ObtenerValorStr(row, "Nombre de la madre"),
-        fechaNacMadre = FormatearFecha(row, "Fecha de nacimiento del padre"), // Colocar edad exacta
+        fechaNacMadre = FormatearFecha(row, "Fecha de nacimiento de la madre"), // Colocar edad exacta
         profesionMadre = ObtenerValorStr(row, "Profesión madre"),
         //lugarNacMadre = ObtenerValorStr(row, "Lugar de nacimiento de madre"),
         madreCel = ObtenerValorStr(row, "Celular de la madre"),
@@ -197,7 +197,7 @@ app.MapGet("/api/buscar", (string q) =>
         encargadoNombre = ObtenerValorPreferente(row, "Nombre encargado", "Nombre de Encargado"),
         fechaNacEncargado = FormatearFecha(row, "Fecha de nacimiento encargado"),
         encargadoCel = ObtenerValorStr(row, "Celular encargado"),
-        encargadoTel = ObtenerValorStr(row, "Teléfono casa encargado"),02
+        encargadoTel = ObtenerValorStr(row, "Teléfono casa encargado"),
         profesionEncargado = ObtenerValorStr(row, "Profesión encargado"),
 
     })
